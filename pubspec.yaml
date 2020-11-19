@@ -1,0 +1,89 @@
+name: prosiddho
+description: eCommerce app.
+
+# Not publish on pub.dev
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.0
+
+  #Store image in local for future use
+  cached_network_image: ^2.3.3
+  
+  #Firebase auth and database 
+  firebase_core: ^0.5.2
+  cloud_firestore: ^0.14.3
+  firebase_auth: ^0.18.3
+  google_sign_in: ^4.5.6
+
+  #Icons
+  eva_icons_flutter: ^2.0.1
+
+  #Framework with architecture
+  get: ^3.17.1
+
+  #dotted border for ui 
+  dotted_border: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # Image
+  assets:
+    - assets/icons/cart.png
+    - assets/icons/main_icon.png
+    - assets/icons/payment/bkash.png
+    - assets/icons/payment/nogod.png
+    - assets/icons/payment/rocket.png
+    - assets/icons/payment/sure_cash.png
+    - assets/icons/payment/dbbl_card.png
+    - assets/icons/payment/master_card.png
+    - assets/divisions/barishal.jpg
+    - assets/divisions/chittagong.jpg
+    - assets/divisions/dhaka.jpg
+    - assets/divisions/khulna.jpg
+    - assets/divisions/maymensingh.jpg
+    - assets/divisions/rajshahi.jpg
+    - assets/divisions/rangpur.jpg
+    - assets/divisions/sylhet.jpg
+    - assets/products/product1.jpg
+    - assets/products/product2.jpg
+    - assets/products/product3.jpg
+    - assets/products/product4.jpg
+    - assets/products/product5.jpg
+    - assets/products/product6.jpg
+    - assets/products/product7.jpg
+    - assets/products/product8.jpg
+    - assets/products/product9.jpg
+    - assets/products/product10.jpg
+    - assets/products/product11.jpg
+    
+  # Fonts:
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+   
+  
+

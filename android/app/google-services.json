@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "750949884432",
+    "firebase_url": "https://prosiddho-7f1e5.firebaseio.com",
+    "project_id": "prosiddho-7f1e5",
+    "storage_bucket": "prosiddho-7f1e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750949884432:android:72f777a722ac0ed296a095",
+        "android_client_info": {
+          "package_name": "com.example.prosiddho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750949884432-9gfqja63i33sff7ldof3r496p5ebr73l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prosiddho",
+            "certificate_hash": "5fd5fc0e4de095598f1dc07543283c9d2ecf49be"
+          }
+        },
+        {
+          "client_id": "750949884432-okobdtmjin9mk4pkg208e5v4581beghh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHYqHKARGWf5DAKUVUEx4JfXc_cnFxX4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750949884432-okobdtmjin9mk4pkg208e5v4581beghh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
