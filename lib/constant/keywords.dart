@@ -15,6 +15,7 @@ class KeyWords {
   static const String userModel_FreeDelivery = 'free_delivery';
   static const String userModel_LastLogin = 'last_login';
   static const String userModel_IsLogin = 'is_login';
+  static const String userModel_offerCollect = 'offer_collect';
 
   //gmail
   static const String gmail_Uid = 'uid';
@@ -39,6 +40,11 @@ class KeyWords {
   //account status
   static const String accountStatus_Status = 'status';
   static const String accountStatus_Reason = 'reason';
+
+  //offer
+  static const String offerCollect_appUpdate = 'app_update';
+  static const String offerCollect_dailyLogin = 'daily_login';
+
   //---------UserModel-------------
 
   //---------ProductModel-------------
@@ -148,9 +154,9 @@ class KeyWords {
 
   //---------admin settings-------------
   static const String settingsModel_serverMaintenance = 'server_maintenance';
+  static const String settingsModel_appVersion = 'app_version';
   static const String settingsModel_localDeliveryFee = 'local_delivery_fee';
   static const String settingsModel_globalDeliveryFee = 'global_delivery_fee';
-  static const String settingsModel_newUserPoint = 'new_user_point';
   static const String settingsModel_offer = 'offer';
 
   static const String loginAfterLongTime = 'login_after_long_time';
@@ -169,6 +175,12 @@ class KeyWords {
   static const String productOffer = 'product_offer';
   static const String productOffer_discountPercent = 'discount_percent';
   static const String productOffer_productId = 'product_id';
+
+  static const String appUpdateOffer = 'app_update_offer';
+  static const String appUpdateOffer_point = 'point';
+
+  static const String dailyLoginOffer = 'daily_login_offer';
+  static const String dailyLoginOffer_point = 'point';
 
   //---------admin settings-------------
 }

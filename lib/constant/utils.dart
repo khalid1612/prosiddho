@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -57,6 +58,9 @@ class Util {
           ),
         ),
       );
+
+  static Duration loginInterval(Timestamp lastLogin) =>
+      Timestamp.now().toDate().difference(lastLogin.toDate());
 
   static fullScreen({bool showTop = false, bool showBottom = false}) {
     if (showTop && showBottom) {

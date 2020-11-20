@@ -6,6 +6,7 @@ import 'account_status_model.dart';
 import 'address_model.dart';
 import 'free_delivery_model.dart';
 import 'gmail_model.dart';
+import 'offer_collect.dart';
 
 class UserModel {
   String id;
@@ -20,6 +21,7 @@ class UserModel {
   List<FreeDelivery> freeDelivery = List();
   Timestamp lastLogin;
   bool isLogin;
+  OfferCollect offerCollect;
 
   UserModel({
     this.id,
@@ -34,6 +36,7 @@ class UserModel {
     @required this.freeDelivery,
     @required this.lastLogin,
     @required this.isLogin,
+    @required this.offerCollect,
   });
 
   factory UserModel.init() {
@@ -50,6 +53,7 @@ class UserModel {
       freeDelivery: null,
       lastLogin: null,
       isLogin: null,
+      offerCollect: null,
     );
   }
 
@@ -90,6 +94,8 @@ class UserModel {
       freeDelivery: tempFreeDelivery,
       lastLogin: data[KeyWords.userModel_LastLogin],
       isLogin: data[KeyWords.userModel_IsLogin],
+      offerCollect:
+          OfferCollect.formFirestore(data[KeyWords.userModel_offerCollect]),
     );
   }
 
@@ -109,6 +115,8 @@ class UserModel {
       ],
       KeyWords.userModel_LastLogin: userModel.lastLogin,
       KeyWords.userModel_IsLogin: userModel.isLogin,
+      KeyWords.userModel_offerCollect:
+          OfferCollect.toMap(userModel.offerCollect),
     };
   }
 }

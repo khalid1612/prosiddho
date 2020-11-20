@@ -40,6 +40,18 @@ class FirestoreReadFunction {
     }).catchError((error) => print("Settings fetch error: $error"));
 
     return settings;
+
+    // !try it later (more efficient)
+    // DatabaseHelper.collectionSettings.get().then((QuerySnapshot documents) {
+    //   if (documents.size == 1) {
+    //     documents.docs.forEach((QueryDocumentSnapshot document) {
+    //       AdminSettings adminSettings = AdminSettings.fromFirestore(document);
+    //       _adminController.adminSettings = adminSettings;
+    //     });
+
+    //     _startUserStream();
+    //   }
+    // });
   }
 
   /*collect settins from database*/

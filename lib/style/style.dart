@@ -4,6 +4,8 @@ import 'package:prosiddho/style/color_palette.dart';
 
 class Style {
   //margin
+  static double margin = Values.margin;
+
   static const EdgeInsets marginHorizontally = const EdgeInsets.symmetric(
     horizontal: Values.margin,
   );
@@ -14,7 +16,10 @@ class Style {
 
   static const EdgeInsets marginBase = const EdgeInsets.all(Values.margin);
 
+  static EdgeInsets marginAppbar = marginBase.copyWith(top: 50);
+
   //padding
+  static double padding = margin;
   static const EdgeInsets paddingHorizontally = marginHorizontally;
   static const EdgeInsets paddingVertically = marginVertically;
   static const EdgeInsets paddingBase = marginBase;

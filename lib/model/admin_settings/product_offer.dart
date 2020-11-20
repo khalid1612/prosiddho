@@ -23,7 +23,7 @@ class ProductOffer {
 
     return ProductOffer(
       discountPercent: data[KeyWords.productOffer_discountPercent],
-      productId: productIds,
+      productId: tempIds,
     );
   }
 }

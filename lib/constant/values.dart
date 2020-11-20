@@ -1,4 +1,7 @@
 class Values {
+  //app version
+  static const String appVersion = "1.0";
+
   //taka sign
   static const String tkSign = "৳";
 
