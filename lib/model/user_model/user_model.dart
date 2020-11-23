@@ -14,7 +14,7 @@ class UserModel {
   String phone;
   String birthDate;
   Gmail gamil;
-  Timestamp crateDate;
+  Timestamp createDate;
   AccountStatus accountStatus;
   List<Address> address = List();
   int point;
@@ -29,7 +29,7 @@ class UserModel {
     @required this.phone,
     @required this.birthDate,
     @required this.gamil,
-    @required this.crateDate,
+    @required this.createDate,
     @required this.accountStatus,
     @required this.address,
     @required this.point,
@@ -46,7 +46,7 @@ class UserModel {
       phone: null,
       birthDate: null,
       gamil: null,
-      crateDate: null,
+      createDate: null,
       accountStatus: null,
       address: null,
       point: null,
@@ -86,7 +86,7 @@ class UserModel {
       phone: data[KeyWords.userModel_Phone],
       birthDate: data[KeyWords.userModel_BirthDate],
       gamil: Gmail.fromFirestore(data[KeyWords.userModel_Gamil]),
-      crateDate: data[KeyWords.userModel_CrateDate],
+      createDate: data[KeyWords.userModel_CreateDate],
       accountStatus:
           AccountStatus.fromFirestore(data[KeyWords.userModel_AccountStatus]),
       address: tempAddress,
@@ -105,7 +105,7 @@ class UserModel {
       KeyWords.userModel_Phone: userModel.phone,
       KeyWords.userModel_BirthDate: userModel.birthDate,
       KeyWords.userModel_Gamil: Gmail.toMap(userModel.gamil),
-      KeyWords.userModel_CrateDate: userModel.crateDate,
+      KeyWords.userModel_CreateDate: userModel.createDate,
       KeyWords.userModel_AccountStatus:
           AccountStatus.toMap(userModel.accountStatus),
       KeyWords.userModel_Address: [Address.toMap()],

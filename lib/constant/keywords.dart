@@ -8,7 +8,7 @@ class KeyWords {
   static const String userModel_Phone = 'phone';
   static const String userModel_BirthDate = 'birth_date';
   static const String userModel_Gamil = 'gamil';
-  static const String userModel_CrateDate = 'crate_date';
+  static const String userModel_CreateDate = 'crate_date';
   static const String userModel_AccountStatus = 'account_status';
   static const String userModel_Address = 'address';
   static const String userModel_Point = 'point';

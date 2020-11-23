@@ -1,9 +1,11 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:prosiddho/constant/assets.dart';
+import 'package:prosiddho/constant/show_dialog.dart';
 import 'package:prosiddho/enum/division.dart';
 import 'package:prosiddho/model/category_model.dart';
 import 'package:prosiddho/model/menu_model.dart';
+import 'package:prosiddho/views/profile/profile_screen.dart';
 
 class Data {
   static List<CategoryModel> division = [
@@ -193,7 +195,7 @@ class Data {
       name: 'Profile',
       icon: EvaIcons.personOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => ShowDialog.guestUserRestrictedFeature(ProfileScreen()),
     ),
     MenuModel(
       name: 'My Cart',

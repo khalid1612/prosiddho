@@ -4,6 +4,7 @@ import 'package:prosiddho/controller/products_controller.dart';
 import 'package:prosiddho/enum/status.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_read_function.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_update_function.dart';
+import 'package:prosiddho/model/user_model/address_model.dart';
 import 'package:prosiddho/model/user_model/user_model.dart';
 import 'package:prosiddho/views/dashboard_screen.dart';
 
@@ -33,14 +34,13 @@ class UserController extends GetxController {
       //check document  exists for sefty
       if (document.exists) {
         UserModel userModel = UserModel.fromFirestore(document);
+        this.userModel = userModel;
 
         //check user status
-        if (userModel.accountStatus.status == Status.Active.value) {
+        if (this.userModel.accountStatus.status == Status.Active.value) {
           //set initial setup
           if (!_initSetupFinish) {
             _initSetupFinish = true;
-
-            this.userModel = userModel;
 
             //check last sign in
             //if user back from long time (date available in adimn settings)
@@ -49,7 +49,7 @@ class UserController extends GetxController {
             await FirestoreUpdateFunction.offerUpdate();
 
             //update last signin
-            await FirestoreUpdateFunction.lastLogin(userID);
+            await FirestoreUpdateFunction.lastLogin();
 
             //collect all products initially ;
             //so that categorize all products easily
@@ -61,7 +61,7 @@ class UserController extends GetxController {
           }
         } else {
           Get.defaultDialog(
-            title: "Your account is ${userModel.accountStatus.status}",
+            title: "Your account is ${this.userModel.accountStatus.status}",
           );
           // await FirestoreUpdateFunction.lastLogin(userID);
 

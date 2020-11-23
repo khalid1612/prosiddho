@@ -12,6 +12,7 @@ import 'package:prosiddho/model/admin_settings/admin_settings.dart';
 import 'package:prosiddho/model/user_model/free_delivery_model.dart';
 import 'package:prosiddho/model/user_model/gmail_model.dart';
 import 'package:prosiddho/model/user_model/user_model.dart';
+import 'package:prosiddho/model/user_model/address_model.dart';
 
 class FirestoreUpdateFunction {
   static Future updateUserGmail(UserModel userModel, User user) async {
@@ -34,10 +35,23 @@ class FirestoreUpdateFunction {
     }
   }
 
-  static Future lastLogin(String userID) async {
+  static Future lastLogin() async {
     await DatabaseHelper.collectionUsers
-        .doc(userID)
+        .doc(Get.find<UserController>().userModel.id)
         .update({KeyWords.userModel_LastLogin: Timestamp.now()})
+        .then((value) {})
+        .catchError((error) => print("last login update failed: $error"));
+  }
+
+  static Future address(List<Address> addressList) async {
+    List<dynamic> data = [];
+    for (Address oldAddress in addressList) {
+      data.add(Address.toMap(address: oldAddress));
+    }
+
+    await DatabaseHelper.collectionUsers
+        .doc(Get.find<UserController>().userModel.id)
+        .update({KeyWords.userModel_Address: data})
         .then((value) {})
         .catchError((error) => print("last login update failed: $error"));
   }

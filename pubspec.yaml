@@ -36,6 +36,9 @@ dependencies:
   #dotted border for ui 
   dotted_border: ^1.0.6
 
+  #form bulilder
+  flutter_form_builder: ^3.14.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

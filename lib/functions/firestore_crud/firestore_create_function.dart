@@ -29,7 +29,7 @@ class FirestoreCreateFunction {
         photoURL: user.photoURL,
         phoneNumber: user.phoneNumber ?? null,
       ),
-      crateDate: Timestamp.now(),
+      createDate: Timestamp.now(),
       accountStatus: AccountStatus(
         status: Status.Active.value,
         reason: null,
