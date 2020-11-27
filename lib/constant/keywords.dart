@@ -63,6 +63,7 @@ class KeyWords {
   static const String productModel_buyGet = 'buy_get';
   static const String productModel_price = 'price';
   static const String productModel_priceOffer = 'price_offer';
+  static const String productModel_offerPercent = 'offer_percent';
   static const String productModel_rating = 'rating';
   static const String productModel_shortDescription = 'short_description';
   static const String productModel_subtype = 'subtype';
@@ -88,20 +89,15 @@ class KeyWords {
   static const String rating_average = 'average';
   static const String rating_userCount = 'userCount';
 
-  //price
-  static const String price_price = 'price';
-  static const String price_quantity = 'quantity';
   //---------ProductModel-------------
 
   //---------CartModel-------------
-  static const String cartModel_productId = 'product_id';
-  static const String cartModel_productName = 'product_name';
-  static const String cartModel_productUnit = 'product_unit';
-  static const String cartModel_productImageUrl = 'product_image_url';
-  static const String cartModel_userId = 'user_id';
-  static const String cartModel_addedTime = 'added_time';
-  static const String cartModel_quantity = 'quantity';
-  static const String cartModel_totalPrice = 'total_price';
+  static const String cartModel_lastUpdate = 'last_update';
+  static const String cartModel_productList = 'product_list';
+
+  static const String cartModelProduct_productId = 'product_id';
+  static const String cartModelProduct_quantity = 'quantity';
+  static const String cartModelProduct_date = 'time';
   //---------CartModel-------------
 
   //---------OrderModel-------------
@@ -171,10 +167,6 @@ class KeyWords {
   static const String orderOffer = 'order_offer';
   static const String orderOffer_amountGte = 'amount_gte';
   static const String orderOffer_discountPercent = 'discount_percent';
-
-  static const String productOffer = 'product_offer';
-  static const String productOffer_discountPercent = 'discount_percent';
-  static const String productOffer_productId = 'product_id';
 
   static const String appUpdateOffer = 'app_update_offer';
   static const String appUpdateOffer_point = 'point';

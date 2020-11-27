@@ -13,6 +13,10 @@ import 'package:prosiddho/model/user_model/free_delivery_model.dart';
 import 'package:prosiddho/model/user_model/gmail_model.dart';
 import 'package:prosiddho/model/user_model/user_model.dart';
 import 'package:prosiddho/model/user_model/address_model.dart';
+import 'package:prosiddho/model/cart_model/cart_model.dart';
+import 'package:prosiddho/model/cart_model/cart_model_product.dart';
+import 'package:prosiddho/model/cart_model/cart_model_product_details.dart';
+import 'package:prosiddho/model/product_model/product_model.dart';
 
 class FirestoreUpdateFunction {
   static Future updateUserGmail(UserModel userModel, User user) async {
@@ -166,5 +170,41 @@ class FirestoreUpdateFunction {
         );
       }).catchError((error) => print("last login update failed: $error"));
     }
+  }
+
+  static Future addTocart(CartModelProduct cartModelProduct) async {
+    await DatabaseHelper.collectionCart
+        .doc(Get.find<UserController>().userModel.id)
+        .update({
+          KeyWords.cartModel_productList: FieldValue.arrayUnion([
+            CartModelProduct.toMap(cartModelProduct),
+          ]),
+        })
+        .then((value) => print("cart update success"))
+        .catchError(
+          (error) => print("Failed to add cart item: $error"),
+        );
+  }
+
+  static Future itemQuanity(cartModelProductDetails) async {
+    await removeFromcart(cartModelProductDetails);
+  }
+
+  static Future removeFromcart(
+    List<CartModelProductDetails> cartModelProductDetails,
+  ) async {
+    dynamic data = [];
+
+    for (CartModelProductDetails cartItem in cartModelProductDetails) {
+      data.add(CartModelProduct.toMap(cartItem.cartModelProduct));
+    }
+
+    await DatabaseHelper.collectionCart
+        .doc(Get.find<UserController>().userModel.id)
+        .update({'product_list': data})
+        .then((value) => print("cart update success"))
+        .catchError(
+          (error) => print("Failed to add cart item: $error"),
+        );
   }
 }

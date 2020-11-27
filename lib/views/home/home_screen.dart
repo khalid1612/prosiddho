@@ -1,9 +1,12 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:prosiddho/style/style.dart';
+import 'package:get/get.dart';
+import '../cart/cart_screen.dart';
 
 import 'local_widgets/home_division.dart';
 import 'local_widgets/home_search.dart';
+import 'local_widgets/home_hot_product.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -48,7 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   }),
 
           //cart icon
-          Icon(EvaIcons.shoppingCartOutline),
+          IconButton(
+            onPressed: () {
+              Get.to(CartScreen());
+            },
+            icon: Icon(EvaIcons.shoppingCartOutline),
+          ),
         ],
       ),
     );
@@ -80,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
           //   more: true,
           // ),
           HomeDivision(),
+          HomeHotProduct(),
         ],
       ),
     );

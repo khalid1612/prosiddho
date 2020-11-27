@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:prosiddho/model/cart_model/cart_model_product_details.dart';
+
 class Util {
   static height(BuildContext context, {int percent = 100}) =>
       MediaQuery.of(context).size.height * (percent / 100);
@@ -38,7 +40,7 @@ class Util {
   static bool isValid(dynamic data, {bool checkLength = true}) => data == null
       ? false
       : checkLength
-          ? data.length == 0
+          ? data.toString().length == 0
               ? false
               : true
           : false;
@@ -129,8 +131,27 @@ class Util {
       // //     kBasePadding;
     }
 
-    print("4");
-
     return kBasePadding;
+  }
+
+  static double priceCalculate(CartModelProductDetails cartItem) {
+    double perItemPrice = cartItem.productModel.price;
+
+    //check offer and calculate price
+    if (isValid(cartItem.productModel.priceOffer) &&
+        cartItem.productModel.priceOffer != 0) {
+      perItemPrice = cartItem.productModel.priceOffer;
+    }
+
+    //total price
+    double totalPrice = perItemPrice * cartItem.cartModelProduct.quantity;
+
+    //calcualte discount
+    if (isValid(cartItem.productModel.priceOffer) &&
+        cartItem.productModel.offerPercent != 0) {
+      totalPrice -= totalPrice * (cartItem.productModel.offerPercent / 100);
+    }
+
+    return totalPrice;
   }
 }

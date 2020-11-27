@@ -3,6 +3,10 @@ import 'package:prosiddho/constant/database_helper.dart';
 import 'package:prosiddho/model/admin_settings/admin_settings.dart';
 import 'package:prosiddho/model/product_model/product_model.dart';
 import 'package:prosiddho/model/user_model/user_model.dart';
+import 'package:prosiddho/model/cart_model/cart_model.dart';
+import 'package:prosiddho/model/cart_model/cart_model_product.dart';
+import 'package:get/get.dart';
+import 'package:prosiddho/controller/products_controller.dart';
 
 class FirestoreReadFunction {
   /*collect user details from database*/
@@ -69,6 +73,47 @@ class FirestoreReadFunction {
         });
       }
     }).catchError((error) => print("Get settings error: $error"));
+
+    return productList;
+  }
+
+//user stream
+  static Stream<DocumentSnapshot> cartStream(String userID) {
+    return DatabaseHelper.collectionCart.doc(userID).snapshots();
+  }
+
+  /*collect settins from database*/
+  static Future<List<ProductModel>> cart(String userID) async {
+    List<ProductModel> productList = List();
+
+    await DatabaseHelper.collectionCart
+        .doc(userID)
+        .get()
+        .then((DocumentSnapshot data) {
+      if (data.exists) {
+        final CartModel cartModel = CartModel.fromFirestore(data);
+        final List<ProductModel> productIds =
+            Get.find<ProductController>().allProducts;
+
+        List<CartModelProduct> tempProductId = cartModel.cartModelProduct;
+
+        for (ProductModel productModel in productIds) {
+          for (int i = 0, j = tempProductId.length; i < j; i++) {
+            if (productModel.id == tempProductId[i].productId) {
+              productList.add(productModel);
+              tempProductId.removeAt(i);
+              break;
+            }
+          }
+
+          if (tempProductId == null || tempProductId.length == 0) {
+            break;
+          }
+        }
+      } else {
+        productList = null;
+      }
+    }).catchError((error) => print("Get cart error: $error"));
 
     return productList;
   }

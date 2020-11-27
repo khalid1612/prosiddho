@@ -3,9 +3,9 @@ import 'package:prosiddho/constant/keywords.dart';
 
 class BuyGet {
   //how much product buy (Buy 3)
-  dynamic quantity;
+  int quantity;
   //how much extra (Get 1)
-  dynamic extra;
+  int extra;
 
   BuyGet({
     @required this.quantity,

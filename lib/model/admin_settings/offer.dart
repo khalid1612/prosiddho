@@ -3,7 +3,6 @@ import 'package:prosiddho/constant/keywords.dart';
 import 'package:prosiddho/model/admin_settings/login_after_long_time_offer.dart';
 import 'package:prosiddho/model/admin_settings/new_user_offer.dart';
 import 'package:prosiddho/model/admin_settings/order_offer.dart';
-import 'package:prosiddho/model/admin_settings/product_offer.dart';
 import 'package:prosiddho/model/admin_settings/app_update_offer.dart';
 import 'package:prosiddho/model/admin_settings/daily_login_offer.dart';
 
@@ -11,7 +10,6 @@ class Offer {
   LoginAfterLongTimeOffer loginAfterLongTime;
   NewUserOffer newUserOffer;
   OrderOffer orderOffer;
-  ProductOffer productOffer;
   AppUpdateOffer appUpdateOffer;
   DailyLoginOffer dailyLoginOffer;
 
@@ -19,7 +17,6 @@ class Offer {
     @required this.loginAfterLongTime,
     @required this.newUserOffer,
     @required this.orderOffer,
-    @required this.productOffer,
     @required this.appUpdateOffer,
     @required this.dailyLoginOffer,
   });
@@ -30,7 +27,6 @@ class Offer {
           data[KeyWords.loginAfterLongTime]),
       newUserOffer: NewUserOffer.fromFirestore(data[KeyWords.newUser]),
       orderOffer: OrderOffer.fromFirestore(data[KeyWords.orderOffer]),
-      productOffer: ProductOffer.fromFirestore(data[KeyWords.productOffer]),
       appUpdateOffer:
           AppUpdateOffer.fromFirestore(data[KeyWords.appUpdateOffer]),
       dailyLoginOffer:

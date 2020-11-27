@@ -4,7 +4,6 @@ import 'package:prosiddho/constant/keywords.dart';
 import 'package:prosiddho/model/product_model/birth_place.dart';
 
 import 'buy_get.dart';
-import 'price.dart';
 import 'rating.dart';
 import 'total_sell.dart';
 
@@ -17,13 +16,13 @@ class ProductModel {
   String fullDescription;
   List<String> imageLink = List();
   Timestamp lastUpdateDate;
-  double minimumOrder;
-  double minimumOrderOffer;
+  int minimumOrder;
+  int minimumOrderOffer;
   String name;
-  bool offer;
   BuyGet buyGet;
-  Price price;
-  List<Price> priceOffer = List();
+  double price;
+  double priceOffer;
+  int offerPercent;
   Rating rating;
   String shortDescription;
   String subtype;
@@ -31,7 +30,7 @@ class ProductModel {
   TotalSell totalSell;
   String type;
   String unit;
-  String videoLink;
+  List<String> videoLink = List();
 
   ProductModel({
     @required this.id,
@@ -45,10 +44,10 @@ class ProductModel {
     @required this.minimumOrder,
     @required this.minimumOrderOffer,
     @required this.name,
-    @required this.offer,
     @required this.buyGet,
     @required this.price,
     @required this.priceOffer,
+    @required this.offerPercent,
     @required this.rating,
     @required this.shortDescription,
     @required this.subtype,
@@ -81,15 +80,13 @@ class ProductModel {
       }
     }
 
-    //price offer normalize
-    int countPriceOffer = data[KeyWords.productModel_priceOffer].length ?? 0;
-    List<Price> tempPriceOffer = List();
+    //video link normalize
+    int countVideoLink = data[KeyWords.productModel_videoLink].length ?? 0;
+    List<String> tempVideoLink = List();
 
-    if (countPriceOffer > 0) {
-      for (int i = 0; i < countPriceOffer; i++) {
-        tempPriceOffer.add(
-          Price.fromFirstore(data[KeyWords.productModel_priceOffer][i]),
-        );
+    if (countVideoLink > 0) {
+      for (int i = 0; i < countVideoLink; i++) {
+        tempVideoLink.add(data[KeyWords.productModel_videoLink][i]);
       }
     }
 
@@ -106,10 +103,11 @@ class ProductModel {
       minimumOrder: data[KeyWords.productModel_minimumOrder],
       minimumOrderOffer: data[KeyWords.productModel_minimumOrderOffer],
       name: data[KeyWords.productModel_name],
-      offer: data[KeyWords.productModel_offer],
       buyGet: BuyGet.fromFirestore(data[KeyWords.productModel_buyGet]),
-      price: Price.fromFirstore(data[KeyWords.productModel_price]),
-      priceOffer: tempPriceOffer,
+      price: double.parse(data[KeyWords.productModel_price].toString()),
+      priceOffer:
+          double.parse(data[KeyWords.productModel_priceOffer].toString()),
+      offerPercent: data[KeyWords.productModel_offerPercent],
       rating: Rating.fromFirestore(data[KeyWords.productModel_rating]),
       shortDescription: data[KeyWords.productModel_shortDescription],
       subtype: data[KeyWords.productModel_subtype],
@@ -117,21 +115,11 @@ class ProductModel {
       totalSell: TotalSell.fromFirestore(data[KeyWords.productModel_totalSell]),
       type: data[KeyWords.productModel_type],
       unit: data[KeyWords.productModel_unit],
-      videoLink: data[KeyWords.productModel_videoLink],
+      videoLink: tempVideoLink,
     );
   }
 
   static Map<String, dynamic> toMap(ProductModel productModel) {
-    List<dynamic> priceList = [];
-    if (productModel.priceOffer.length > 0) {
-      for (Price price in productModel.priceOffer) {
-        priceList.add({
-          KeyWords.price_price: price.price,
-          KeyWords.price_quantity: price.quantity,
-        });
-      }
-    }
-
     return {
       KeyWords.productModel_available: productModel.available,
       KeyWords.productModel_stock: productModel.stock,
@@ -145,17 +133,14 @@ class ProductModel {
       KeyWords.productModel_lastUpdateDate: productModel.lastUpdateDate,
       KeyWords.productModel_minimumOrder: productModel.minimumOrder,
       KeyWords.productModel_minimumOrderOffer: productModel.minimumOrderOffer,
+      KeyWords.productModel_offerPercent: productModel.offerPercent,
       KeyWords.productModel_name: productModel.name,
-      KeyWords.productModel_offer: productModel.offer,
       KeyWords.productModel_buyGet: {
         KeyWords.buyGet_extra: productModel.buyGet.extra,
         KeyWords.buyGet_quantity: productModel.buyGet.quantity,
       },
-      KeyWords.productModel_price: {
-        KeyWords.price_price: productModel.price.price,
-        KeyWords.price_quantity: productModel.price.quantity,
-      },
-      KeyWords.productModel_priceOffer: priceList,
+      KeyWords.productModel_price: productModel.price,
+      KeyWords.productModel_priceOffer: productModel.priceOffer,
       KeyWords.productModel_rating: {
         KeyWords.rating_average: productModel.rating.average,
         KeyWords.rating_userCount: productModel.rating.userCount,

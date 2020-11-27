@@ -3,8 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/constant/database_helper.dart';
 import 'package:prosiddho/controller/admin_controller.dart';
+import 'package:prosiddho/controller/user_controller.dart';
 import 'package:prosiddho/enum/status.dart';
 import 'package:prosiddho/model/admin_settings/admin_settings.dart';
+import 'package:prosiddho/model/cart_model/cart_model.dart';
+import 'package:prosiddho/model/cart_model/cart_model_product.dart';
 import 'package:prosiddho/model/user_model/account_status_model.dart';
 import 'package:prosiddho/model/user_model/free_delivery_model.dart';
 import 'package:prosiddho/model/user_model/gmail_model.dart';
@@ -76,5 +79,21 @@ class FirestoreCreateFunction {
     );
 
     return userModel;
+  }
+
+  static Future<void> addTocart(CartModelProduct cartModelProduct) async {
+    final CartModel cartModel = CartModel(
+      cartModelProduct: [cartModelProduct],
+      lastUpdate: Timestamp.now(),
+    );
+
+    //add in database
+    await DatabaseHelper.collectionCart
+        .doc(Get.find<UserController>().userModel.id)
+        .set(CartModel.toMap(cartModel))
+        .then((value) => null)
+        .catchError(
+          (error) => print("Failed to add cart item: $error"),
+        );
   }
 }

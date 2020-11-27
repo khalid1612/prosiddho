@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prosiddho/constant/keywords.dart';
 
-import '../cart_model.dart';
+import '../cart_model/cart_model.dart';
 import '../user_model/address_model.dart';
 import 'payment_details.dart';
 
@@ -92,10 +92,6 @@ class OrderModel {
   static Map<String, dynamic> toMap(OrderModel orderModel) {
     List<dynamic> paymentDetailsMap = List();
     List<dynamic> productDetailsMap = List();
-
-    for (CartModel productDetails in orderModel.productDetails) {
-      productDetailsMap.add(CartModel.toMap(productDetails));
-    }
 
     for (PaymentDetails paymentDetails in orderModel.paymentDetails) {
       paymentDetailsMap.add(PaymentDetails.toMap(paymentDetails));

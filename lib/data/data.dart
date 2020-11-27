@@ -6,6 +6,9 @@ import 'package:prosiddho/enum/division.dart';
 import 'package:prosiddho/model/category_model.dart';
 import 'package:prosiddho/model/menu_model.dart';
 import 'package:prosiddho/views/profile/profile_screen.dart';
+import 'package:prosiddho/views/cart/cart_screen.dart';
+import 'package:get/get.dart';
+import 'package:prosiddho/controller/signin_controller.dart';
 
 class Data {
   static List<CategoryModel> division = [
@@ -201,7 +204,7 @@ class Data {
       name: 'My Cart',
       icon: EvaIcons.shoppingCartOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => Get.to(CartScreen()),
     ),
     MenuModel(
       name: 'Wishlist',
@@ -237,7 +240,7 @@ class Data {
       name: 'SIGN OUT',
       icon: EvaIcons.logOutOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => Get.find<SigninController>().signOutFromGoogle(),
     ),
   ];
 }
