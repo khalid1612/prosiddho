@@ -6,6 +6,7 @@ class Assets {
   static String fontFamily = "Lato";
 
   //payment icon
+  static String cashOnDelivery = "assets/icons/payment/cash_on_delivery.png";
   static String baksh = "assets/icons/payment/bkash.png";
   static String nogod = "assets/icons/payment/nogod.png";
   static String rocket = "assets/icons/payment/rocket.png";

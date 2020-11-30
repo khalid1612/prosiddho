@@ -4,7 +4,7 @@ description: eCommerce app.
 # Not publish on pub.dev
 publish_to: 'none' 
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -56,6 +56,7 @@ flutter:
   assets:
     - assets/icons/cart.png
     - assets/icons/main_icon.png
+    - assets/icons/payment/cash_on_delivery.png
     - assets/icons/payment/bkash.png
     - assets/icons/payment/nogod.png
     - assets/icons/payment/rocket.png

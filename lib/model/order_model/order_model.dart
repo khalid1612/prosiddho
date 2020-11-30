@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:prosiddho/constant/keywords.dart';
 
-import '../cart_model/cart_model.dart';
 import '../user_model/address_model.dart';
-import 'payment_details.dart';
+import '../payment_details.dart';
+import 'order_model_product.dart';
 
 class OrderModel {
   String id;
@@ -12,17 +12,18 @@ class OrderModel {
   String cancelReason;
   String userId;
   String userName;
+  String userImage;
   Timestamp orderTime;
   List<PaymentDetails> paymentDetails = List();
   String phone;
-  List<CartModel> productDetails = List();
+  List<OrderModelProduct> productDetails = List();
   String status;
   Timestamp statusChangeTime;
-  double payment;
-  double discount;
   double totalPrice;
-  double totalPayable;
+  double due;
+  double profit;
   double deliveryFee;
+  String couponCode;
 
   OrderModel({
     this.id,
@@ -30,17 +31,18 @@ class OrderModel {
     @required this.cancelReason,
     @required this.userId,
     @required this.userName,
+    @required this.userImage,
     @required this.orderTime,
     @required this.paymentDetails,
     @required this.phone,
     @required this.productDetails,
     @required this.status,
     @required this.statusChangeTime,
-    @required this.payment,
-    @required this.discount,
     @required this.totalPrice,
-    @required this.totalPayable,
+    @required this.due,
+    @required this.profit,
     @required this.deliveryFee,
+    @required this.couponCode,
   });
 
   factory OrderModel.fromFirestore(DocumentSnapshot data, {String orderId}) {
@@ -50,7 +52,7 @@ class OrderModel {
 
     int countProductDetails =
         data[KeyWords.orderModel_productDetails].length ?? 0;
-    List<CartModel> tempProductDetails = List();
+    List<OrderModelProduct> tempProductDetails = List();
 
     if (countPaymentDetails > 0) {
       for (int i = 0; i < countPaymentDetails; i++) {
@@ -64,7 +66,8 @@ class OrderModel {
     if (countProductDetails > 0) {
       for (int i = 0; i < countProductDetails; i++) {
         tempProductDetails.add(
-          CartModel.fromFirestore(data[KeyWords.orderModel_productDetails][i]),
+          OrderModelProduct.fromFirestore(
+              data[KeyWords.orderModel_productDetails][i]),
         );
       }
     }
@@ -75,17 +78,18 @@ class OrderModel {
       cancelReason: data[KeyWords.orderModel_cancelReason],
       userId: data[KeyWords.orderModel_userId],
       userName: data[KeyWords.orderModel_userName],
+      userImage: data[KeyWords.orderModel_userImage],
       orderTime: data[KeyWords.orderModel_orderTime],
       paymentDetails: tempPaymentDetails,
       phone: data[KeyWords.orderModel_phone],
       productDetails: tempProductDetails,
       status: data[KeyWords.orderModel_status],
       statusChangeTime: data[KeyWords.orderModel_statusChangeTime],
-      payment: data[KeyWords.orderModel_payment],
-      discount: data[KeyWords.orderModel_discount],
       totalPrice: data[KeyWords.orderModel_totalPrice],
-      totalPayable: data[KeyWords.orderModel_totalPayable],
+      due: data[KeyWords.orderModel_due],
+      profit: data[KeyWords.orderModel_profit],
       deliveryFee: data[KeyWords.orderModel_deliveryFee],
+      couponCode: data[KeyWords.orderModel_couponCode],
     );
   }
 
@@ -95,6 +99,10 @@ class OrderModel {
 
     for (PaymentDetails paymentDetails in orderModel.paymentDetails) {
       paymentDetailsMap.add(PaymentDetails.toMap(paymentDetails));
+    }
+
+    for (OrderModelProduct orderModelProduct in orderModel.productDetails) {
+      productDetailsMap.add(OrderModelProduct.toMap(orderModelProduct));
     }
 
     return {
@@ -108,11 +116,11 @@ class OrderModel {
       KeyWords.orderModel_productDetails: productDetailsMap,
       KeyWords.orderModel_status: orderModel.status,
       KeyWords.orderModel_statusChangeTime: orderModel.statusChangeTime,
-      KeyWords.orderModel_payment: orderModel.payment,
-      KeyWords.orderModel_discount: orderModel.discount,
       KeyWords.orderModel_totalPrice: orderModel.totalPrice,
-      KeyWords.orderModel_totalPayable: orderModel.totalPayable,
+      KeyWords.orderModel_due: orderModel.due,
+      KeyWords.orderModel_profit: orderModel.profit,
       KeyWords.orderModel_deliveryFee: orderModel.deliveryFee,
+      KeyWords.orderModel_couponCode: orderModel.couponCode,
     };
   }
 }

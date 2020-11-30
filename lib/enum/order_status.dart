@@ -1,6 +1,4 @@
 enum OrderStatus {
-  order_not_placed,
-  order_placed,
   pending,
   received,
   canceled,

@@ -13,10 +13,10 @@ import 'package:prosiddho/model/user_model/free_delivery_model.dart';
 import 'package:prosiddho/model/user_model/gmail_model.dart';
 import 'package:prosiddho/model/user_model/user_model.dart';
 import 'package:prosiddho/model/user_model/address_model.dart';
-import 'package:prosiddho/model/cart_model/cart_model.dart';
 import 'package:prosiddho/model/cart_model/cart_model_product.dart';
 import 'package:prosiddho/model/cart_model/cart_model_product_details.dart';
-import 'package:prosiddho/model/product_model/product_model.dart';
+
+import 'package:prosiddho/model/payment_details.dart';
 
 class FirestoreUpdateFunction {
   static Future updateUserGmail(UserModel userModel, User user) async {
@@ -77,7 +77,7 @@ class FirestoreUpdateFunction {
     //check offer and update
 
     //*chekc login after long time
-    if (Util.loginInterval(userModel.lastLogin).inDays >
+    if (Util.timeDifference(userModel.lastLogin).inDays >
             adminSettings.offer.loginAfterLongTime.dayInactive &&
         adminSettings.offer.loginAfterLongTime.dayInactive != 0) {
       //if point available
@@ -205,6 +205,20 @@ class FirestoreUpdateFunction {
         .then((value) => print("cart update success"))
         .catchError(
           (error) => print("Failed to add cart item: $error"),
+        );
+  }
+
+  static Future payment(PaymentDetails paymentDetails) async {
+    await DatabaseHelper.collectionPayment
+        .doc(Get.find<UserController>().userModel.id)
+        .update({
+          "details": FieldValue.arrayUnion([
+            PaymentDetails.toMap(paymentDetails),
+          ]),
+        })
+        .then((value) => print("payment update success"))
+        .catchError(
+          (error) => print("Failed to update payment: $error"),
         );
   }
 }

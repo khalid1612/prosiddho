@@ -8,11 +8,11 @@ class CouponModel {
   String code;
   Timestamp createDate;
   int delivery;
-  double discount;
+  int discount;
   Timestamp expireDate;
   bool isActive;
   bool isUsed;
-  double minAmountOrder;
+  int minAmountOrder;
   String name;
   int perUserUsed;
   int totalUseable;

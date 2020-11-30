@@ -5,6 +5,7 @@ import 'package:prosiddho/enum/status.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_read_function.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_update_function.dart';
 import 'package:prosiddho/model/user_model/user_model.dart';
+import 'package:prosiddho/model/user_model/address_model.dart';
 import 'package:prosiddho/views/dashboard_screen.dart';
 
 class UserController extends GetxController {
@@ -18,6 +19,18 @@ class UserController extends GetxController {
 
   void reset() {
     this._userModel.value = UserModel.init();
+  }
+
+  Address getActiveAddress() {
+    Address active;
+    for (Address address in userModel.address) {
+      if (address.active) {
+        active = address;
+        break;
+      }
+    }
+
+    return active;
   }
 
   //start a user stream

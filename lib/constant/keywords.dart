@@ -105,17 +105,26 @@ class KeyWords {
   static const String orderModel_cancelReason = 'cancel_reason';
   static const String orderModel_userId = 'user_id';
   static const String orderModel_userName = 'user_name';
+  static const String orderModel_userImage = 'user_image';
   static const String orderModel_orderTime = 'order_time';
   static const String orderModel_paymentDetails = 'payment_details';
   static const String orderModel_phone = 'phone';
   static const String orderModel_productDetails = 'product_etails';
   static const String orderModel_status = 'status';
   static const String orderModel_statusChangeTime = 'status_change_time';
-  static const String orderModel_payment = 'payment';
-  static const String orderModel_discount = 'discount';
+  static const String orderModel_due = 'due';
+  static const String orderModel_profit = 'profit';
   static const String orderModel_totalPrice = 'total_price';
-  static const String orderModel_totalPayable = 'total_payable';
+  static const String orderModel_couponCode = 'coupon_code';
   static const String orderModel_deliveryFee = 'delivery_fee';
+
+  static const String orderModel_product_productId = 'product_id';
+  static const String orderModel_product_name = 'product_name';
+  static const String orderModel_product_quantity = 'quantity';
+  static const String orderModel_product_extra = 'extra';
+  static const String orderModel_product_totalPrice = 'total_price';
+  static const String orderModel_product_regularPrice = 'regular_price';
+  static const String orderModel_product_offerPrice = 'offer_price';
 
   //payment details
   static const String paymentDetails_getway = 'getway';

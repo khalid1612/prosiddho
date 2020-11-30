@@ -119,8 +119,8 @@ class CartScreen extends StatelessWidget {
           padding: EdgeInsets.all(20),
           child: Row(
             children: <Widget>[
-              Text(
-                  "${_addToCartController.totalPriceWithoutCoupon.toString()}"),
+              Obx(() => Text(
+                  "${_addToCartController.totalPriceWithoutCoupon.toString()}")),
               Spacer(),
               RaisedButton(
                 onPressed: () => Get.to(CheckoutScreen()),

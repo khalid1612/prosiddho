@@ -7,6 +7,7 @@ import 'package:prosiddho/model/cart_model/cart_model.dart';
 import 'package:prosiddho/model/cart_model/cart_model_product.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/controller/products_controller.dart';
+import 'package:prosiddho/controller/user_controller.dart';
 
 class FirestoreReadFunction {
   /*collect user details from database*/
@@ -75,6 +76,13 @@ class FirestoreReadFunction {
     }).catchError((error) => print("Get settings error: $error"));
 
     return productList;
+  }
+
+  //payment
+  static Stream<DocumentSnapshot> paymentStream() {
+    return DatabaseHelper.collectionPayment
+        .doc(Get.find<UserController>().userModel.id)
+        .snapshots();
   }
 
 //user stream

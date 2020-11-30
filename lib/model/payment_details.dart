@@ -21,7 +21,7 @@ class PaymentDetails {
   factory PaymentDetails.fromFirestore(dynamic data) {
     return PaymentDetails(
       getway: data[KeyWords.paymentDetails_getway],
-      amount: data[KeyWords.paymentDetails_amount],
+      amount: double.parse(data[KeyWords.paymentDetails_amount].toString()),
       time: data[KeyWords.paymentDetails_time],
       accountId: data[KeyWords.paymentDetails_accountId],
       accountHolderName: data[KeyWords.paymentDetails_accountHolderName],

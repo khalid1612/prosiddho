@@ -10,4 +10,12 @@ class FirestoreDeleteFunction {
         .then((value) => print("cart Deleted"))
         .catchError((error) => print("Failed to delete cart: $error"));
   }
+
+  static Future payment() async {
+    DatabaseHelper.collectionPayment
+        .doc(Get.find<UserController>().userModel.id)
+        .delete()
+        .then((value) => print("payment Deleted"))
+        .catchError((error) => print("Failed to delete payment: $error"));
+  }
 }

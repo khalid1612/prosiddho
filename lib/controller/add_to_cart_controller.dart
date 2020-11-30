@@ -128,4 +128,8 @@ class AddToCartController extends GetxController {
       }
     });
   }
+
+  void reset() {
+    this.cartProducts.clear();
+  }
 }

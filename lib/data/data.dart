@@ -5,10 +5,12 @@ import 'package:prosiddho/constant/show_dialog.dart';
 import 'package:prosiddho/enum/division.dart';
 import 'package:prosiddho/model/category_model.dart';
 import 'package:prosiddho/model/menu_model.dart';
+import 'package:prosiddho/model/payment_model.dart';
 import 'package:prosiddho/views/profile/profile_screen.dart';
 import 'package:prosiddho/views/cart/cart_screen.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/controller/signin_controller.dart';
+import 'package:prosiddho/enum/payment_getway.dart';
 
 class Data {
   static List<CategoryModel> division = [
@@ -241,6 +243,51 @@ class Data {
       icon: EvaIcons.logOutOutline,
       color: Colors.black,
       onTap: () => Get.find<SigninController>().signOutFromGoogle(),
+    ),
+  ];
+
+  static List<PaymentModel> paymentOption = [
+    PaymentModel(
+      name: 'Cash on delivery',
+      getway: PaymentGetway.cash_on_delivery.value,
+      imagePath: Assets.cashOnDelivery,
+      onTap: null,
+    ),
+    PaymentModel(
+      name: 'Bkash',
+      getway: PaymentGetway.bkash.value,
+      imagePath: Assets.baksh,
+      onTap: null,
+    ),
+    PaymentModel(
+      name: 'Nogod',
+      getway: PaymentGetway.nogod.value,
+      imagePath: Assets.nogod,
+      onTap: null,
+    ),
+    PaymentModel(
+      name: 'Rocket',
+      getway: PaymentGetway.rocket.value,
+      imagePath: Assets.rocket,
+      onTap: null,
+    ),
+    PaymentModel(
+      name: 'Sure Cash',
+      getway: PaymentGetway.sure_cash.value,
+      imagePath: Assets.sureCash,
+      onTap: null,
+    ),
+    PaymentModel(
+      name: 'DBBL card / Nexus cart',
+      getway: PaymentGetway.dbbl_card.value,
+      imagePath: Assets.dbblCard,
+      onTap: null,
+    ),
+    PaymentModel(
+      name: 'Master card',
+      getway: PaymentGetway.debit_credit_card.value,
+      imagePath: Assets.masterCard,
+      onTap: null,
     ),
   ];
 }

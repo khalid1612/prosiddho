@@ -61,8 +61,8 @@ class Util {
         ),
       );
 
-  static Duration loginInterval(Timestamp lastLogin) =>
-      Timestamp.now().toDate().difference(lastLogin.toDate());
+  static Duration timeDifference(Timestamp last) =>
+      Timestamp.now().toDate().difference(last.toDate());
 
   static fullScreen({bool showTop = false, bool showBottom = false}) {
     if (showTop && showBottom) {
