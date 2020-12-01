@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:prosiddho/constant/database_helper.dart';
 import 'package:prosiddho/model/admin_settings/admin_settings.dart';
+import 'package:prosiddho/model/order_model/order_model.dart';
 import 'package:prosiddho/model/product_model/product_model.dart';
 import 'package:prosiddho/model/user_model/user_model.dart';
 import 'package:prosiddho/model/cart_model/cart_model.dart';
@@ -124,5 +125,20 @@ class FirestoreReadFunction {
     }).catchError((error) => print("Get cart error: $error"));
 
     return productList;
+  }
+
+  static Future<List<OrderModel>> fetchOrders() async {
+    List<OrderModel> tempOrderModel = List();
+
+    await DatabaseHelper.collectionOrder
+        .where('user_id', isEqualTo: Get.find<UserController>().userModel.id)
+        .get()
+        .then((QuerySnapshot documents) {
+      documents.docs.forEach((doc) {
+        tempOrderModel.add(OrderModel.fromFirestore(doc));
+      });
+    }).catchError((error) => print("Order fetch error: $error"));
+
+    return tempOrderModel;
   }
 }

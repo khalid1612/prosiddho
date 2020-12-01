@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/controller/products_controller.dart';
+import 'package:prosiddho/controller/wishlist_controller.dart';
 import 'package:prosiddho/enum/status.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_read_function.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_update_function.dart';
@@ -67,6 +68,11 @@ class UserController extends GetxController {
             //so that categorize all products easily
             ProductController _productController = Get.put(ProductController());
             await _productController.fetchProduct();
+
+            //collect wishlist
+            WishlistController _wishlistController =
+                Get.put(WishlistController());
+            await _wishlistController.startStream();
 
             //go to homne page
             Get.to(DashboardScreen());

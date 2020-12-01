@@ -7,6 +7,7 @@ import 'package:prosiddho/functions/firestore_crud/firestore_read_function.dart'
 import 'package:prosiddho/functions/firestore_crud/firestore_update_function.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_delete_function.dart';
 import 'package:get/get.dart';
+import 'package:prosiddho/model/order_model/order_model_product.dart';
 import 'package:prosiddho/model/product_model/product_model.dart';
 import 'package:prosiddho/model/cart_model/cart_model.dart';
 import 'package:prosiddho/model/cart_model/cart_model_product.dart';
@@ -19,6 +20,18 @@ class AddToCartController extends GetxController {
 
   double get totalPriceWithoutCoupon =>
       cartProducts.fold(0, (total, item) => total + item.totalPrice);
+
+  Future<void> addToCartFromReOrder(
+      List<OrderModelProduct> productDetails) async {
+    for (ProductModel productModel
+        in Get.find<ProductController>().allProducts) {
+      for (OrderModelProduct product in productDetails) {
+        if (productModel.id == product.productId) {
+          await addToCart(productModel, quantity: product.quantity);
+        }
+      }
+    }
+  }
 
   Future<void> addToCart(ProductModel productModel, {int quantity}) async {
     CartModelProduct newItem = CartModelProduct(
@@ -72,7 +85,6 @@ class AddToCartController extends GetxController {
   Future startCartStream() async {
     FirestoreReadFunction.cartStream(Get.find<UserController>().userModel.id)
         .listen((DocumentSnapshot document) async {
-      print("call");
       if (document.exists) {
         //clear cartProducts
         cartProducts.clear();

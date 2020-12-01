@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prosiddho/controller/products_controller.dart';
 import 'package:prosiddho/controller/add_to_cart_controller.dart';
+import 'package:prosiddho/controller/wishlist_controller.dart';
 import 'package:get/get.dart';
 
 class HomeHotProduct extends StatelessWidget {
@@ -45,6 +46,13 @@ class HomeHotProduct extends StatelessWidget {
                         .addToCart(_productController.allProducts[index]);
                   },
                   child: Text("add to cart"),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Get.find<WishlistController>().addToWishlist(
+                        _productController.allProducts[index].id);
+                  },
+                  child: Text("add to Wishlist"),
                 ),
               ],
             ),

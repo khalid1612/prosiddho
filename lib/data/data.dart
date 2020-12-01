@@ -6,6 +6,8 @@ import 'package:prosiddho/enum/division.dart';
 import 'package:prosiddho/model/category_model.dart';
 import 'package:prosiddho/model/menu_model.dart';
 import 'package:prosiddho/model/payment_model.dart';
+import 'package:prosiddho/views/wishlist.dart';
+import 'package:prosiddho/views/my_order.dart';
 import 'package:prosiddho/views/profile/profile_screen.dart';
 import 'package:prosiddho/views/cart/cart_screen.dart';
 import 'package:get/get.dart';
@@ -212,13 +214,13 @@ class Data {
       name: 'Wishlist',
       icon: EvaIcons.heartOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => Get.to(WishlistScreen()),
     ),
     MenuModel(
       name: 'My Orders',
       icon: EvaIcons.briefcaseOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => Get.to(MyOrderScreen()),
     ),
     MenuModel(
       name: 'Verify Product',

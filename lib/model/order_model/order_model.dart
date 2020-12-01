@@ -110,6 +110,7 @@ class OrderModel {
       KeyWords.orderModel_cancelReason: orderModel.cancelReason,
       KeyWords.orderModel_userId: orderModel.userId,
       KeyWords.orderModel_userName: orderModel.userName,
+      KeyWords.orderModel_userImage: orderModel.userImage,
       KeyWords.orderModel_orderTime: orderModel.orderTime,
       KeyWords.orderModel_paymentDetails: paymentDetailsMap,
       KeyWords.orderModel_phone: orderModel.phone,

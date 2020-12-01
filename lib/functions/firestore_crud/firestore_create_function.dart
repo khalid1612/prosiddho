@@ -189,4 +189,16 @@ class FirestoreCreateFunction {
       (error) => print("Failed to placed order: $error"),
     );
   }
+
+  static Future addToWishlist(String productId) async {
+    await DatabaseHelper.collectionWishlist
+        .doc(Get.find<UserController>().userModel.id)
+        .set({
+          "ids": FieldValue.arrayUnion([productId]),
+        }, SetOptions(merge: true))
+        .then((value) => null)
+        .catchError(
+          (error) => print("Failed to add payment item: $error"),
+        );
+  }
 }

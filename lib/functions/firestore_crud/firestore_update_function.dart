@@ -221,4 +221,16 @@ class FirestoreUpdateFunction {
           (error) => print("Failed to update payment: $error"),
         );
   }
+
+  static Future addToWishlist(String productId) async {
+    await DatabaseHelper.collectionWishlist
+        .doc(Get.find<UserController>().userModel.id)
+        .set({
+          "ids": FieldValue.arrayRemove([productId]),
+        }, SetOptions(merge: true))
+        .then((value) => null)
+        .catchError(
+          (error) => print("Failed to add payment item: $error"),
+        );
+  }
 }

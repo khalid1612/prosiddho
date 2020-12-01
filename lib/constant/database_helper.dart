@@ -24,4 +24,7 @@ class DatabaseHelper {
 
   static CollectionReference collectionPayment =
       FirebaseFirestore.instance.collection("payment");
+
+  static CollectionReference collectionWishlist =
+      FirebaseFirestore.instance.collection("wishlist");
 }
