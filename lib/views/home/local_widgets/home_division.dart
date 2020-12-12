@@ -6,6 +6,21 @@ class HomeDivision extends StatelessWidget {
   //total division
   final int totalDivisions = Data.division.length;
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: totalDivisions,
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {},
+          child: _divisionItem(index),
+        ),
+      ),
+    );
+  }
+
   //division item
   Widget _divisionItem(int index) => Align(
         child: Container(
@@ -28,7 +43,7 @@ class HomeDivision extends StatelessWidget {
             child: Text(
               Data.division[index].name,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: Colors.white,
               ),
@@ -36,19 +51,4 @@ class HomeDivision extends StatelessWidget {
           ),
         ),
       );
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: totalDivisions,
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {},
-          child: _divisionItem(index),
-        ),
-      ),
-    );
-  }
 }

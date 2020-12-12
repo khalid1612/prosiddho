@@ -20,6 +20,7 @@ class UserController extends GetxController {
 
   void reset() {
     this._userModel.value = UserModel.init();
+    _initSetupFinish = false;
   }
 
   Address getActiveAddress() {
@@ -73,6 +74,8 @@ class UserController extends GetxController {
             WishlistController _wishlistController =
                 Get.put(WishlistController());
             await _wishlistController.startStream();
+
+            print("hello");
 
             //go to homne page
             Get.to(DashboardScreen());

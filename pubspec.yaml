@@ -39,6 +39,12 @@ dependencies:
   #form bulilder
   flutter_form_builder: ^3.14.1
 
+  #font awosome
+  font_awesome_flutter: ^8.10.0
+
+  #slider
+  carousel_pro: ^1.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

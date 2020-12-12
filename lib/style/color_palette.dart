@@ -18,6 +18,8 @@ class ColorPalette {
   static const Color scaffold = Color(0xFFFFFFFF);
   static const Color scaffold2 = Color(0xFFF5F5F5);
 
+  static const bg = Color(0xFF979797);
+
   static const LinearGradient colorSplash = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,

@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'dart:convert';
 
+import 'package:get/get.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +17,18 @@ class Util {
   static width(BuildContext context, {int percent = 100}) =>
       MediaQuery.of(context).size.width * (percent / 100);
 
+  // Get the proportionate height as per screen size
+  static double getProportionateScreenHeight(double inputHeight) {
+    // 812 is the layout height that designer use
+    return (inputHeight / 812.0) * Get.height;
+  }
+
+  // Get the proportionate height as per screen size
+  static double getProportionateScreenWidth(double inputWidth) {
+    // 375 is the layout width that designer use
+    return (inputWidth / 375.0) * Get.width;
+  }
+
   static randomImage(images) => random(max: images.length - 1);
 
   static getUseableHeight(BuildContext context, {int percent = 100}) =>
@@ -26,7 +40,7 @@ class Util {
 
   static appBarHeight(BuildContext context) => AppBar().preferredSize.height;
 
-  static int random({int min = 0, int max = 1}) =>
+  static int random({int min = 1, int max = 1}) =>
       min + Random().nextInt(max - min);
 
   static bool isPortrait(BuildContext context) =>

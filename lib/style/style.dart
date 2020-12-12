@@ -26,16 +26,16 @@ class Style {
 
   static BorderRadius borderRadius = BorderRadius.circular(12);
 
-  static EdgeInsets marginHorizontalListview(int length, int index) {
-    return index == 0
-        ? EdgeInsets.only(
-            left: Values.margin,
-            right: Values.margin / 2,
-          )
-        : index == length - 1
-            ? EdgeInsets.only(right: Values.margin)
-            : EdgeInsets.only(right: Values.margin / 2);
-  }
+  //item length is normal. count start is 1
+  static EdgeInsets marginHorizontalListview(int length, int index) =>
+      index == 0
+          ? EdgeInsets.only(
+              left: Values.margin,
+              right: Values.margin / 2,
+            )
+          : index == length - 1
+              ? EdgeInsets.only(right: Values.margin)
+              : EdgeInsets.only(right: Values.margin / 2);
 
   //************text style*******/
 
@@ -65,6 +65,12 @@ class Style {
     fontSize: Values.fontSizeHeading4,
     color: ColorPalette.text,
     fontWeight: FontWeight.w600,
+  );
+
+  //heading6
+  static const TextStyle heading6 = TextStyle(
+    fontSize: Values.fontSizeHeading6,
+    color: Color(0XFF8B8B8B),
   );
 
   //body1

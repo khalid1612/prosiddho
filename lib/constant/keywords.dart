@@ -179,6 +179,7 @@ class KeyWords {
 
   static const String appUpdateOffer = 'app_update_offer';
   static const String appUpdateOffer_point = 'point';
+  static const String appUpdateOffer_posterPath = 'poster_path';
 
   static const String dailyLoginOffer = 'daily_login_offer';
   static const String dailyLoginOffer_point = 'point';

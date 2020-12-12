@@ -16,6 +16,10 @@ class Values {
   static const double fontSizeHeading2 = 24.0;
   static const double fontSizeHeading3 = 22.0;
   static const double fontSizeHeading4 = 18.0;
+  static const double fontSizeHeading6 = 18.0;
   static const double fontSizeBody1 = 14.0;
   static const double fontSizeBody2 = 12.0;
+
+  static const String defaultImage =
+      "https://image.flaticon.com/icons/png/512/103/103085.png";
 }

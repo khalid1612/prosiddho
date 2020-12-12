@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/controller/user_controller.dart';
 import 'package:prosiddho/enum/sign_in_method.dart';
 import 'package:prosiddho/functions/auth/google_auth_function.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_create_function.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_read_function.dart';
-import 'package:prosiddho/views/sign_in_screen.dart';
+import 'package:prosiddho/views/splash/splash_screen.dart';
 
 class SigninController extends GetxController {
   SignInMethod signInMethod;
@@ -50,7 +51,13 @@ class SigninController extends GetxController {
 
           Get.find<UserController>().startUserStream(user.uid);
         });
-        Get.snackbar("Sign in successfully", "Enjoy yourself");
+
+        Get.snackbar(
+          "Sign in successfully",
+          "Enjoy yourself",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.white,
+        );
       }
     });
   }
@@ -74,7 +81,7 @@ class SigninController extends GetxController {
         user = null;
 
         //go to login page and finish all previous page
-        Get.offAll(SignInScreen());
+        Get.offAll(SplashScreen());
       }
     });
   }

@@ -1,14 +1,12 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:prosiddho/constant/assets.dart';
-import 'package:prosiddho/constant/show_dialog.dart';
 import 'package:prosiddho/enum/division.dart';
 import 'package:prosiddho/model/category_model.dart';
 import 'package:prosiddho/model/menu_model.dart';
 import 'package:prosiddho/model/payment_model.dart';
 import 'package:prosiddho/views/wishlist.dart';
 import 'package:prosiddho/views/my_order.dart';
-import 'package:prosiddho/views/profile/profile_screen.dart';
 import 'package:prosiddho/views/cart/cart_screen.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/controller/signin_controller.dart';
@@ -202,7 +200,7 @@ class Data {
       name: 'Profile',
       icon: EvaIcons.personOutline,
       color: Colors.black,
-      onTap: () => ShowDialog.guestUserRestrictedFeature(ProfileScreen()),
+      onTap: null,
     ),
     MenuModel(
       name: 'My Cart',

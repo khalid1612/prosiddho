@@ -10,6 +10,15 @@ class ProductController extends GetxController {
 
   int get totalProducts => allProducts.length;
 
+  bool freeDeliveryAvailable() {
+    for (ProductModel productModel in allProducts) {
+      if (productModel.offerPercent != null && productModel.offerPercent > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   Future fetchProduct() async {
     await DatabaseHelper.collectionProductDetails
         .get()
