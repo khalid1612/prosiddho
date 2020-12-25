@@ -20,7 +20,10 @@ class ProductFilter {
 
   static List<ProductModel> recentlyUpdated() => _randomProduct(10);
 
-  static List<ProductModel> mostPopular() => _randomProduct(20);
+  //popular product must be even number
+  // static List<ProductModel> mostPopular() => _randomProduct(40);
+  static List<ProductModel> mostPopular() =>
+      Get.find<ProductController>().allProducts;
 
   static List<ProductModel> _randomProduct(int maxItem) {
     List<ProductModel> temp = List();

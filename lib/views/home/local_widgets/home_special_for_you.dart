@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:prosiddho/constant/constant_export.dart';
 import 'package:prosiddho/model/product_model/product_model.dart';
 import 'package:prosiddho/style/style_export.dart';
+import 'package:prosiddho/views/product_details/product_details_screen.dart';
 
 class HomeSpecialForYou extends StatelessWidget {
   final List<ProductModel> products = ProductFilter.specialForYou();
@@ -38,58 +39,63 @@ class HomeSpecialForYou extends StatelessWidget {
       }
     }
 
-    return Container(
-      height: Util.getProportionateScreenHeight(90),
-      width: Util.getProportionateScreenWidth(242),
-      margin: Style.marginHorizontalListview(length, itemNo),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Stack(
-          children: [
-            //background image
-            ImageLoading.cachedNetworkImage(url, radius: 20),
+    return GestureDetector(
+      onTap: () {
+        Get.to(ProductDetailsScreen(product: product));
+      },
+      child: Container(
+        height: Util.getProportionateScreenHeight(90),
+        width: Util.getProportionateScreenWidth(242),
+        margin: Style.marginHorizontalListview(length, itemNo),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(
+            children: [
+              //background image
+              ImageLoading.cachedNetworkImage(url, radius: 20),
 
-            //image overlay
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF343434).withOpacity(0.9),
-                    Color(0xFF343434).withOpacity(0.5),
-                  ],
+              //image overlay
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF343434).withOpacity(0.9),
+                      Color(0xFF343434).withOpacity(0.5),
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            //details
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: Util.getProportionateScreenHeight(15),
-                vertical: Util.getProportionateScreenHeight(10),
-              ),
-              child: Text.rich(
-                TextSpan(
-                  style: TextStyle(color: Colors.white),
-                  children: [
-                    //name
-                    TextSpan(
-                      text: "${product.name.capitalize}\n",
-                      style: TextStyle(
-                        fontSize: Util.getProportionateScreenHeight(18),
-                        fontWeight: FontWeight.bold,
+              //details
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: Util.getProportionateScreenHeight(15),
+                  vertical: Util.getProportionateScreenHeight(10),
+                ),
+                child: Text.rich(
+                  TextSpan(
+                    style: TextStyle(color: Colors.white),
+                    children: [
+                      //name
+                      TextSpan(
+                        text: "${product.name.capitalize}\n",
+                        style: TextStyle(
+                          fontSize: Util.getProportionateScreenHeight(18),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    //division
-                    TextSpan(
-                      text: "${product.birthPlace.division}\n",
-                    ),
-                  ],
+                      //division
+                      TextSpan(
+                        text: "${product.birthPlace.division}\n",
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

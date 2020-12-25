@@ -9,6 +9,8 @@ version: 1.0.0+2
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
+  
+
 dependencies:
   flutter:
     sdk: flutter
@@ -44,6 +46,12 @@ dependencies:
 
   #slider
   carousel_pro: ^1.0.0
+
+  #grid view
+  flutter_staggered_grid_view: ^0.3.2
+
+  #youtube api
+  youtube_player_flutter: ^7.0.0+7
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ import 'package:prosiddho/style/style_export.dart';
 
 import 'local_widgets/home_division.dart';
 import 'local_widgets/home_header.dart';
+import 'local_widgets/home_most_popular.dart';
 import 'local_widgets/home_offer.dart';
 import 'local_widgets/home_special_for_you.dart';
 import 'local_widgets/home_hot_products.dart';
@@ -97,6 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
               title: "Most popular",
               showMore: false,
             ),
+
+            //popular body
+            HomePopular(),
           ],
         ),
       ),

@@ -7,3 +7,4 @@ export 'rounded_icon_btn.dart';
 export 'section_title.dart';
 export 'theme.dart';
 export 'image_loading.dart';
+export 'bottom_navigation.dart';
