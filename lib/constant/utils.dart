@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:prosiddho/model/cart_model/cart_model_product_details.dart';
+import 'package:prosiddho/model/product_model/product_model.dart';
 
 class Util {
   static height(BuildContext context, {int percent = 100}) =>
@@ -149,21 +150,23 @@ class Util {
   }
 
   static double priceCalculate(CartModelProductDetails cartItem) {
-    double perItemPrice = cartItem.productModel.price;
+    ProductModel productModel = cartItem.productModel;
 
-    //check offer and calculate price
-    if (isValid(cartItem.productModel.priceOffer) &&
-        cartItem.productModel.priceOffer != 0) {
-      perItemPrice = cartItem.productModel.priceOffer;
+    //perItemPrice -> offer active or not then set price
+    //init no offer
+    double perItemPrice = productModel.price;
+
+    //check offer and set per item price
+    if (isValid(productModel.priceOffer) && productModel.priceOffer != 0) {
+      perItemPrice = productModel.priceOffer;
     }
 
     //total price
     double totalPrice = perItemPrice * cartItem.cartModelProduct.quantity;
 
     //calcualte discount
-    if (isValid(cartItem.productModel.priceOffer) &&
-        cartItem.productModel.offerPercent != 0) {
-      totalPrice -= totalPrice * (cartItem.productModel.offerPercent / 100);
+    if (isValid(productModel.priceOffer) && productModel.offerPercent != 0) {
+      totalPrice -= totalPrice * (productModel.offerPercent / 100);
     }
 
     return totalPrice;

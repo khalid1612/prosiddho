@@ -14,8 +14,10 @@ class WishlistController extends GetxController {
   Future addToWishlist(String productId) async {
     if (wishlistIds.contains(productId)) {
       await FirestoreUpdateFunction.addToWishlist(productId);
+      print("remove form wishlist");
     } else {
       await FirestoreCreateFunction.addToWishlist(productId);
+      print("add in wishlist");
     }
   }
 
