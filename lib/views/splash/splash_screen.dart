@@ -98,7 +98,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: ColorPalette.primaryPurple,
+          // color: ColorPalette.primaryPurple,
 
           //for visible nested container and icon in center
           child: Stack(
@@ -133,7 +133,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Buttons.signInButton(
                   Colors.white,
                   FontAwesomeIcons.google,
-                  ColorPalette.primaryRed,
+                  ColorPalette.tertiary,
                   "Sign in with Google",
                 ),
               ),

@@ -22,4 +22,7 @@ class Values {
 
   static const String defaultImage =
       "https://image.flaticon.com/icons/png/512/103/103085.png";
+
+  static const String dummyDescription =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
 }

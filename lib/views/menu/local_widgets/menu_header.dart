@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/controller/user_controller.dart';
-import 'package:prosiddho/style/style.dart';
+import 'package:prosiddho/style/style_export.dart';
 
 class MenuHeader extends StatelessWidget {
   final UserController _userController = Get.find<UserController>();
@@ -21,12 +21,12 @@ class MenuHeader extends StatelessWidget {
               width: 65,
               margin: EdgeInsets.only(top: 50),
               decoration: BoxDecoration(
-                  borderRadius: Style.borderRadius * 2,
-                  color: Colors.pink,
-                  image: DecorationImage(
-                    image:
-                        NetworkImage(_userController.userModel.gamil.photoURL),
-                  )),
+                borderRadius: Style.borderRadius * 2,
+                color: ColorPalette.tertiary.withOpacity(.1),
+                image: DecorationImage(
+                  image: NetworkImage(_userController.userModel.gamil.photoURL),
+                ),
+              ),
             ),
 
             SizedBox(height: 20),
@@ -42,15 +42,13 @@ class MenuHeader extends StatelessWidget {
 
             //name
             Text(
-              _userController.userModel.name,
+              _userController.userModel.name.capitalize,
               style: TextStyle(
                 fontSize: 23,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            //name
           ],
         ),
       ),

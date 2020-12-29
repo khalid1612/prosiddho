@@ -15,7 +15,7 @@ class MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: Data.menu[index].onTap,
       child: Container(
-        padding: Style.paddingVertically / 4,
+        padding: Style.paddingVertically / 2.5,
         child: Row(
           children: [
             Icon(

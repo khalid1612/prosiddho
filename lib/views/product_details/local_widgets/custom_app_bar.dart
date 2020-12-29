@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prosiddho/constant/constant_export.dart';
+import 'package:prosiddho/style/style_export.dart';
 
 class CustomAppBar extends PreferredSize {
   final double rating;
@@ -8,14 +9,20 @@ class CustomAppBar extends PreferredSize {
 
   @override
   // AppBar().preferredSize.height provide us the height that appy on our app bar
-  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
+  Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height + 60);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
+      child: Container(
         padding: EdgeInsets.symmetric(
-            horizontal: Util.getProportionateScreenWidth(20)),
+          horizontal: Util.getProportionateScreenWidth(20),
+          // vertical: Util.getProportionateScreenHeight(20),
+        ),
+        // margin: Style.marginVertically,
+        decoration: BoxDecoration(
+          color: Colors.amber,
+        ),
         child: Row(
           children: [
             SizedBox(
@@ -32,26 +39,26 @@ class CustomAppBar extends PreferredSize {
               ),
             ),
             Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    rating == null ? "0.0" : rating.toStringAsFixed(1),
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Icon(Icons.star),
-                ],
-              ),
-            )
+            // Container(
+            //   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
+            //   decoration: BoxDecoration(
+            //     color: Colors.white,
+            //     borderRadius: BorderRadius.circular(14),
+            //   ),
+            //   child: Row(
+            //     children: [
+            //       Text(
+            //         rating == null ? "0.0" : rating.toStringAsFixed(1),
+            //         style: const TextStyle(
+            //           fontSize: 14,
+            //           fontWeight: FontWeight.w600,
+            //         ),
+            //       ),
+            //       const SizedBox(width: 5),
+            //       Icon(Icons.star),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

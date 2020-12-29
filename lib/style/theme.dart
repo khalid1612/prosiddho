@@ -14,12 +14,12 @@ ThemeData themeData() {
 
 AppBarTheme appBarTheme() {
   return AppBarTheme(
-    color: Colors.white,
+    color: Colors.black,
     elevation: 0,
-    brightness: Brightness.light,
-    iconTheme: IconThemeData(
-      color: Colors.black,
-    ),
+    // brightness: Brightness.dark,
+    // iconTheme: IconThemeData(
+    //   color: Colors.black,
+    // ),
   );
 }
 

@@ -18,8 +18,19 @@ class AddToCartController extends GetxController {
   List<CartModelProductDetails> cartProducts =
       List<CartModelProductDetails>().obs;
 
+  int get itemInCart => cartProducts.length;
+
   double get totalPriceWithoutCoupon =>
       cartProducts.fold(0, (total, item) => total + item.totalPrice);
+
+  bool isProductInCart(ProductModel product) {
+    for (int i = 0, j = this.cartProducts.length; i < j; i++) {
+      if (cartProducts[i].productModel.id == product.id) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   Future<void> addToCartFromReOrder(
       List<OrderModelProduct> productDetails) async {
@@ -37,7 +48,9 @@ class AddToCartController extends GetxController {
     CartModelProduct newItem = CartModelProduct(
       addedTime: Timestamp.now(),
       productId: productModel.id,
-      quantity: quantity ?? productModel.minimumOrder,
+      quantity: quantity ?? productModel.priceOffer == 0
+          ? productModel.minimumOrder
+          : productModel.minimumOrderOffer,
     );
 
     cartProducts.isEmpty
@@ -63,22 +76,35 @@ class AddToCartController extends GetxController {
       //increase quantity
       //remove item
       List<CartModelProductDetails> tempCartProducts = this.cartProducts;
-      tempCartProducts[index].cartModelProduct.quantity += quantity;
 
-      await FirestoreUpdateFunction.itemQuanity(tempCartProducts);
+      int minimumOrder = cartProducts[index].productModel.priceOffer == 0
+          ? cartProducts[index].productModel.minimumOrder
+          : cartProducts[index].productModel.minimumOrderOffer;
+
+      int currentQuantity = tempCartProducts[index].cartModelProduct.quantity;
+
+      if (currentQuantity + quantity >= minimumOrder) {
+        tempCartProducts[index].cartModelProduct.quantity += quantity;
+
+        await FirestoreUpdateFunction.itemQuanity(tempCartProducts);
+      }
     }
   }
 
-  Future<void> removeFromCart(int index, productId) async {
-    if (cartProducts[index].productModel.id == productId) {
-      //remove item
-      List<CartModelProductDetails> tempCartProducts = this.cartProducts;
-      tempCartProducts.removeAt(index);
+  Future<void> removeFromCart(productId) async {
+    for (int index = 0, j = cartProducts.length; index < j; index++) {
+      if (cartProducts[index].productModel.id == productId) {
+        //remove item
+        List<CartModelProductDetails> tempCartProducts = this.cartProducts;
+        tempCartProducts.removeAt(index);
 
-      //last item on cart then delete the document otherwise update
-      cartProducts.length == 0
-          ? await FirestoreDeleteFunction.cart()
-          : await FirestoreUpdateFunction.removeFromcart(tempCartProducts);
+        //last item on cart then delete the document otherwise update
+        cartProducts.length == 0
+            ? await FirestoreDeleteFunction.cart()
+            : await FirestoreUpdateFunction.removeFromcart(tempCartProducts);
+
+        break;
+      }
     }
   }
 

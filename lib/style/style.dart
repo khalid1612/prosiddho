@@ -16,6 +16,9 @@ class Style {
 
   static const EdgeInsets marginBase = const EdgeInsets.all(Values.margin);
 
+  static EdgeInsets marginSectionTitle =
+      marginBase.copyWith(bottom: Style.margin / 2);
+
   static EdgeInsets marginAppbar = marginBase.copyWith(top: 50);
 
   //padding

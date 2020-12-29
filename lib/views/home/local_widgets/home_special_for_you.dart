@@ -99,50 +99,5 @@ class HomeSpecialForYou extends StatelessWidget {
         ),
       ),
     );
-
-    // return Container(
-    //   height: Util.getProportionateScreenHeight(90),
-    //   width: Util.getProportionateScreenWidth(242),
-    //   margin: Style.marginHorizontalListview(length, itemNo),
-    //   decoration: BoxDecoration(
-    //     color: ColorPalette.bg.withOpacity(0.1),
-    //     borderRadius: BorderRadius.circular(20),
-    //   ),
-    //   child: Row(
-    //     children: [
-    //       //image
-    //       SizedBox(
-    //         width: Util.getProportionateScreenWidth(242) * .35,
-    //         child: ImageLoading.cachedNetworkImage(url, radius: 20),
-    //       ),
-
-    //       //details
-    //       Expanded(
-    //         child: Padding(
-    //           padding: const EdgeInsets.only(
-    //             top: 10.0,
-    //             left: 10.0,
-    //           ),
-    //           child: Column(
-    //             // mainAxisAlignment: MainAxisAlignment.center,
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             children: [
-    //               Text(
-    //                 "${product.name.capitalize}",
-    //                 style: TextStyle(
-    //                   fontSize: 16,
-    //                   fontWeight: FontWeight.bold,
-    //                 ),
-    //               ),
-    //               Text(
-    //                 "${product.birthPlace.division}",
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }

@@ -30,79 +30,96 @@ class _HomeScreenState extends State<HomeScreen> {
         ..rotateY(isDrawerOpen ? -0.5 : 0)
         ..rotateX(isDrawerOpen ? -0.08 : 0)
         ..rotateZ(isDrawerOpen ? -0.08 : 0),
-      duration: Duration(milliseconds: 250),
+      duration: Duration(milliseconds: 400),
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(
           isDrawerOpen ? 40 : 0.0,
         ),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            //menu
-            //search field
-            //cart
-            //notification
-            _appBar(),
+      child: Column(
+        children: [
+          //menu
+          //search field
+          //cart
+          //notification
+          _appBar(),
 
-            //offer carouous
-            HomeOffer(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  //offer carouous
+                  HomeOffer(),
 
-            //category or type
-            HomeCategory(),
+                  //category or type
+                  HomeCategory(),
 
-            //division title
-            SectionTitle(
-              title: "Divisions",
-              showMoreText: "Show All",
+                  //division title
+                  SectionTitle(
+                    title: "Divisions",
+                    showMoreText: "Show All",
+                  ),
+
+                  //all division
+                  HomeDivision(),
+
+                  //special for you head
+                  SectionTitle(
+                    title: "Special for you",
+                    showMore: false,
+                    margin: Style.marginSectionTitle.copyWith(
+                      top: Style.margin * 1.5,
+                    ),
+                  ),
+
+                  //special for you body
+                  HomeSpecialForYou(),
+
+                  //Hot Products
+                  //last sell + new product
+                  SectionTitle(
+                    title: "Hot products",
+                    subTitle: "Include new product",
+                    showMore: false,
+                    margin: Style.marginSectionTitle.copyWith(
+                      top: Style.margin * 1.5,
+                    ),
+                  ),
+
+                  //hot product body
+                  HomeHotProducts(),
+
+                  //Recently update
+                  SectionTitle(
+                    title: "Recently updated",
+                    subTitle: "Fresh products & new offer",
+                    showMore: false,
+                    margin: Style.marginSectionTitle.copyWith(
+                      top: Style.margin * 1.5,
+                    ),
+                  ),
+
+                  //recently updated body
+                  HomeRecentlyUpdated(),
+
+                  //Most popular
+                  //top sell + top rating + top comment + wishlist
+                  SectionTitle(
+                    title: "Most popular",
+                    showMore: false,
+                    margin: Style.marginSectionTitle.copyWith(
+                      top: Style.margin * 1.5,
+                    ),
+                  ),
+
+                  //popular body
+                  HomePopular(),
+                ],
+              ),
             ),
-
-            //all division
-            HomeDivision(),
-
-            //special for you head
-            SectionTitle(
-              title: "Special for you",
-              showMore: false,
-              margin: EdgeInsets.all(Style.margin),
-            ),
-
-            //special for you body
-            HomeSpecialForYou(),
-
-            //Hot Products
-            //last sell + new product
-            SectionTitle(
-              title: "Hot products",
-              subTitle: "Include new product",
-              showMore: false,
-            ),
-
-            //hot product body
-            HomeHotProducts(),
-
-            //Recently update
-            SectionTitle(
-              title: "Recently updated",
-              subTitle: "Fresh products & new offer",
-              showMore: false,
-            ),
-
-            //recently updated body
-            HomeRecentlyUpdated(),
-
-            //Most popular
-            //top sell + top rating + top comment + wishlist
-            SectionTitle(
-              title: "Most popular",
-              showMore: false,
-            ),
-
-            //popular body
-            HomePopular(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -110,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _appBar() {
     return Container(
       margin: Style.marginAppbar.copyWith(
-        top: 60,
+        bottom: 5,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -118,9 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
           //menu icon and back icon
           isDrawerOpen
               ? GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.arrow_back_ios),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    size: 30,
+                    color: ColorPalette.primaryPurple,
                   ),
                   onTap: () {
                     setState(() {
@@ -145,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
-              child: HomeHeader(),
+              child: HomeHeader(isDrawerOpen: isDrawerOpen),
             ),
           ),
         ],

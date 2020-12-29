@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:prosiddho/constant/constant_export.dart';
 import 'package:prosiddho/model/product_model/product_model.dart';
 import 'package:prosiddho/style/style_export.dart';
+import 'package:prosiddho/views/product_details/product_details_screen.dart';
 
 class HomeHotProducts extends StatelessWidget {
   final List<ProductModel> products = ProductFilter.hotProducts();
@@ -12,6 +13,8 @@ class HomeHotProducts extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ...List.generate(
             products.length,
@@ -40,35 +43,42 @@ class HomeHotProducts extends StatelessWidget {
 
     return Padding(
       padding: Style.marginHorizontalListview(length, itemNo),
-      child: SizedBox(
-        width: Util.getProportionateScreenWidth(100),
-        child: Column(
-          children: [
-            AspectRatio(
-              aspectRatio: 1.02,
-              child: Container(
-                // padding: EdgeInsets.all(Util.getProportionateScreenHeight(5)),
-                decoration: BoxDecoration(
-                  color: ColorPalette.bg.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(15),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(ProductDetailsScreen(product: product));
+        },
+        child: SizedBox(
+          width: Util.getProportionateScreenWidth(100),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                aspectRatio: 1.02,
+                child: Container(
+                  // padding: EdgeInsets.all(Util.getProportionateScreenHeight(5)),
+                  decoration: BoxDecoration(
+                    color: ColorPalette.bg.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: ImageLoading.cachedNetworkImage(url, radius: 15),
                 ),
-                child: ImageLoading.cachedNetworkImage(url, radius: 15),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "${product.name.capitalize}",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+              SizedBox(
+                height: 5,
               ),
-            ),
-            Text(
-              "${product.birthPlace.division}",
-            ),
-          ],
+              Text(
+                "${product.name.capitalize}",
+                style: TextStyle(
+                  fontSize: 13,
+                ),
+              ),
+              PriceStyle.priceStyle(
+                regular: product.price,
+                offer: product.priceOffer,
+              ),
+            ],
+          ),
         ),
       ),
     );

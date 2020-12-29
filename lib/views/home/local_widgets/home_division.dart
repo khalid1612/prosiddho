@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:prosiddho/data/data.dart';
-import 'package:prosiddho/style/style.dart';
+import 'package:prosiddho/style/style_export.dart';
 
 class HomeDivision extends StatelessWidget {
   //total division
   final int totalDivisions = Data.division.length;
+  final double itemHeight = 84.0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: itemHeight,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: totalDivisions,
@@ -25,11 +26,11 @@ class HomeDivision extends StatelessWidget {
   Widget _divisionItem(int index) => Align(
         child: Container(
           width: 125,
-          height: 84,
+          height: itemHeight,
           margin: Style.marginHorizontalListview(totalDivisions, index),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: Colors.white,
+            color: ColorPalette.secondary,
             image: DecorationImage(
               image: AssetImage(Data.division[index].imagePath),
               fit: BoxFit.cover,

@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
     double width = .5;
 
     if (address != null && address.active) {
-      color = ColorPalette.primaryRed;
+      // color = ColorPalette.primaryRed;
       width = 2.0;
     }
 

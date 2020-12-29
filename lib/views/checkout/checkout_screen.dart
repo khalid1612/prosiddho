@@ -98,7 +98,7 @@ class CheckoutScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: RaisedButton(
               child: Text("Apply Coupon"),
-              color: ColorPalette.primaryAmber,
+              color: ColorPalette.tertiary,
               textColor: Colors.white,
               onPressed: () async {
                 if (code != null && code.trim().length > 0) {

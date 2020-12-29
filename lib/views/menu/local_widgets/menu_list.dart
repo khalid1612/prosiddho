@@ -8,12 +8,22 @@ class MenuList extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          MenuItem(index: 0),
+          //profile
           MenuItem(index: 1),
+
+          //my cart
           MenuItem(index: 2),
+
+          //wishlist
           MenuItem(index: 3),
+
+          //my orders
           MenuItem(index: 4),
+
+          //verify product
           MenuItem(index: 5),
+
+          //settings
           MenuItem(index: 6),
         ],
       ),

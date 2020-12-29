@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prosiddho/constant/utils.dart';
-import 'package:prosiddho/style/style.dart';
+import 'package:prosiddho/style/style_export.dart';
 import 'package:prosiddho/style/color_palette.dart';
 
 class SectionTitle extends StatelessWidget {
@@ -24,7 +24,7 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? Style.marginBase.copyWith(bottom: Style.margin / 3),
+      margin: margin ?? Style.marginSectionTitle,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -57,7 +57,7 @@ class SectionTitle extends StatelessWidget {
               onTap: onMoreTap,
               child: Text(
                 showMoreText,
-                style: TextStyle(color: Color(0xFFBBBBBB)),
+                style: TextStyle(color: ColorPalette.textLight),
               ),
             ),
         ],
