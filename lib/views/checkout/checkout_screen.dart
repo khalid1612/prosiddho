@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/constant/database_helper.dart';
-import 'package:prosiddho/constant/utils.dart';
+import 'package:prosiddho/constant/constant_export.dart';
 import 'package:prosiddho/data/data.dart';
 import 'package:prosiddho/model/coupon_model.dart';
-import 'package:prosiddho/style/color_palette.dart';
-import 'package:prosiddho/views/profile/profile_screen.dart';
-import 'package:prosiddho/views/order_placed.dart';
+import 'package:prosiddho/style/style_export.dart';
+import 'package:prosiddho/views/order_placed/order_placed_screen.dart';
 import 'package:prosiddho/views/payment_bkash/payment_bkash.dart';
 import 'package:prosiddho/controller/user_controller.dart';
 import 'package:prosiddho/controller/payment_controller.dart';
 import 'package:prosiddho/controller/add_to_cart_controller.dart';
 import 'package:prosiddho/functions/firestore_crud/firestore_create_function.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+
+import 'local_widgets/selected_address.dart';
 
 class CheckoutScreen extends StatelessWidget {
   final UserController _userController = Get.find<UserController>();
@@ -95,12 +96,13 @@ class CheckoutScreen extends StatelessWidget {
             },
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: RaisedButton(
-              child: Text("Apply Coupon"),
-              color: ColorPalette.tertiary,
-              textColor: Colors.white,
-              onPressed: () async {
+            padding: const EdgeInsets.symmetric(
+              horizontal: 50.0,
+              vertical: 30,
+            ),
+            child: Buttons.normalButton(
+              text: "Apply Coupon",
+              onTap: () async {
                 if (code != null && code.trim().length > 0) {
                   checkCode(code).then((CouponModel couponModel) {
                     if (couponModel == null) {
@@ -162,12 +164,14 @@ class CheckoutScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Image.asset(Data.paymentOption[i].imagePath,
-                    scale: i == 0
-                        ? 10
-                        : i == j - 1
-                            ? 20
-                            : 4),
+                CircleAvatar(
+                  radius: 20,
+                  child: ClipOval(
+                    child: Image.asset(
+                      Data.paymentOption[i].imagePath,
+                    ),
+                  ),
+                ),
                 SizedBox(width: 20),
                 Text(Data.paymentOption[i].name),
               ],
@@ -178,94 +182,128 @@ class CheckoutScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Color(0xFFEFEFEF),
+      appBar: AppBar(
+        backgroundColor: ColorPalette.primary,
+        title: Text("Checkout"),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //heading
-            Text("selected Address"),
+        child: Padding(
+          padding: Style.marginBase,
+          child: Column(
+            children: [
+              //active adddress details
+              CheckoutSelectedAddress(),
 
-            //active adddress details
-            Obx(() => Text(_userController.getActiveAddress().addressLane)),
+              SizedBox(height: 30),
 
-            //change address
-            InkWell(
-              onTap: () {
-                Get.to(ProfileScreen());
-              },
-              child: Text("change Address"),
-            ),
+              //coupon
+              coupon(),
 
-            //coupon
-            coupon(),
-
-            //payment heading
-            Text("select payment option"),
-
-            //payment options
-
-            Obx(
-              () => _paymentController.selectedPaymentMethod >= 0
-                  ? FormBuilderRadioGroup(
-                      orientation: GroupedRadioOrientation.vertical,
-                      attribute: "addressList",
-                      options: options,
-                      initialValue: _paymentController.selectedPaymentMethod,
-                      activeColor: Colors.green,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
+              //payment heading
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  color: ColorPalette.bg.withOpacity(.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        "Select Payment Option",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: ColorPalette.text,
+                        ),
                       ),
-                      onChanged: (value) {
-                        _paymentController.selectedPaymentMethod = value;
-                      },
-                    )
-                  : Container(),
-            ),
-          ],
+                    ),
+                    Obx(
+                      () => _paymentController.selectedPaymentMethod >= 0
+                          ? FormBuilderRadioGroup(
+                              orientation: GroupedRadioOrientation.vertical,
+                              attribute: "addressList",
+                              options: options,
+                              initialValue:
+                                  _paymentController.selectedPaymentMethod,
+                              activeColor: Colors.green,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                              onChanged: (value) {
+                                _paymentController.selectedPaymentMethod =
+                                    value;
+                              },
+                            )
+                          : Container(),
+                    ),
+                  ],
+                ),
+              ),
+
+              //payment options
+            ],
+          ),
         ),
       ),
 
       //bottom navigation bar
       bottomNavigationBar: BottomAppBar(
-        color: Colors.amber,
+        color: Colors.white,
         shape: CircularNotchedRectangle(),
-        child: Container(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            children: <Widget>[
-              Obx(
-                () => Text(
-                  priceAfterApplyCouponAndPayment(
-                        Get.find<PaymentController>().couponDiscount,
-                        Get.find<PaymentController>().paymentAmount,
-                      ).toString() ??
-                      "",
-                ),
-              ),
-              Spacer(),
-              RaisedButton(
-                onPressed: () async {
-                  switch (_paymentController.selectedPaymentMethod) {
-                    case 0:
-                    case -1:
-                      await FirestoreCreateFunction.placedOrder();
-                      Get.to(OrderPlaced());
-                      break;
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Row(
+                children: <Widget>[
+                  Obx(
+                    () => Text(
+                      Values.tkSign +
+                              priceAfterApplyCouponAndPayment(
+                                Get.find<PaymentController>().couponDiscount,
+                                Get.find<PaymentController>().paymentAmount,
+                              ).toString() ??
+                          "",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  Obx(
+                    () => Buttons.normalButton(
+                      text: _paymentController.selectedPaymentMethod == 0 ||
+                              _paymentController.selectedPaymentMethod == -1
+                          ? "Placed order"
+                          : "Payment",
+                      onTap: () async {
+                        switch (_paymentController.selectedPaymentMethod) {
+                          case 0:
+                          case -1:
+                            await FirestoreCreateFunction.placedOrder();
+                            Get.to(OrderPlacedScreen());
+                            break;
 
-                    case 1:
-                      Get.to(PaymentBkash());
-                      break;
-                  }
-                },
-                child: Obx(
-                  () => _paymentController.selectedPaymentMethod == 0 ||
-                          _paymentController.selectedPaymentMethod == -1
-                      ? Text("Placed order")
-                      : Text("Payment"),
-                ),
+                          case 1:
+                            Get.to(PaymentBkash());
+                            break;
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

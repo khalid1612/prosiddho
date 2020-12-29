@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:prosiddho/constant/constant_export.dart';
 import 'package:prosiddho/style/style_export.dart';
+import 'package:prosiddho/views/category/category_screen.dart';
+import 'package:get/get.dart';
 
 class HomeCategory extends StatelessWidget {
   @override
@@ -30,16 +32,19 @@ class HomeCategory extends StatelessWidget {
       child: Column(
         children: [
           //icon
-          AspectRatio(
-            aspectRatio: 1.0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: ColorPalette.primaryPurple,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(
-                icon,
-                color: Colors.white,
+          GestureDetector(
+            onTap: () => Get.to(CategoryScreen(categoryName: text)),
+            child: AspectRatio(
+              aspectRatio: 1.0,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ColorPalette.primaryPurple,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  icon,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

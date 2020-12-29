@@ -97,14 +97,16 @@ class Buttons {
   static normalButton({
     @required String text,
     @required Function onTap,
+    EdgeInsets padding,
   }) =>
       GestureDetector(
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.symmetric(
-            vertical: Style.margin / 2.5,
-            horizontal: Style.margin,
-          ),
+          padding: padding ??
+              EdgeInsets.symmetric(
+                vertical: Style.margin / 2.5,
+                horizontal: Style.margin,
+              ),
           decoration: BoxDecoration(
             color: ColorPalette.primary,
             borderRadius: BorderRadius.circular(30),

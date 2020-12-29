@@ -19,6 +19,15 @@ class ProductController extends GetxController {
     return false;
   }
 
+  ProductModel findProduct(String productId) {
+    for (int i = 0; i < totalProducts; i++) {
+      if (allProducts[i].id == productId) {
+        return allProducts[i];
+      }
+    }
+    return null;
+  }
+
   Future fetchProduct() async {
     await DatabaseHelper.collectionProductDetails
         .get()

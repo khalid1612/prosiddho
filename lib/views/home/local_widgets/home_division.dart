@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prosiddho/data/data.dart';
 import 'package:prosiddho/style/style_export.dart';
+import 'package:get/get.dart';
+import 'package:prosiddho/views/division_with_district/division_with_district.dart';
 
 class HomeDivision extends StatelessWidget {
   //total division
@@ -15,7 +17,13 @@ class HomeDivision extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: totalDivisions,
         itemBuilder: (context, index) => GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.to(
+              DivisionWithDistrict(
+                index: index,
+              ),
+            );
+          },
           child: _divisionItem(index),
         ),
       ),

@@ -5,8 +5,11 @@ import 'package:prosiddho/enum/division.dart';
 import 'package:prosiddho/model/category_model.dart';
 import 'package:prosiddho/model/menu_model.dart';
 import 'package:prosiddho/model/payment_model.dart';
-import 'package:prosiddho/views/wishlist.dart';
-import 'package:prosiddho/views/my_order.dart';
+import 'package:prosiddho/views/profile/profile_screen.dart';
+import 'package:prosiddho/views/settings/settings_screen.dart';
+import 'package:prosiddho/views/contact/contact_screen.dart';
+import 'package:prosiddho/views/wishlist/wishlist.dart';
+import 'package:prosiddho/views/my_order/my_order_screen.dart';
 import 'package:prosiddho/views/cart/cart_screen.dart';
 import 'package:get/get.dart';
 import 'package:prosiddho/controller/signin_controller.dart';
@@ -200,7 +203,7 @@ class Data {
       name: 'Profile',
       icon: EvaIcons.personOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => Get.to(ProfileScreen()),
     ),
     MenuModel(
       name: 'My Cart',
@@ -230,13 +233,13 @@ class Data {
       name: 'Settings',
       icon: EvaIcons.settingsOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => Get.to(SettingsScreen()),
     ),
     MenuModel(
       name: 'CONTACT',
       icon: EvaIcons.emailOutline,
       color: Colors.black,
-      onTap: null,
+      onTap: () => Get.to(ContactScreen()),
     ),
     MenuModel(
       name: 'SIGN OUT',
