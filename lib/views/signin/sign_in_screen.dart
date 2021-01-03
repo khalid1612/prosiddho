@@ -3,12 +3,11 @@ import 'package:get/get.dart';
 import 'package:prosiddho/constant/assets.dart';
 import 'package:prosiddho/constant/utils.dart';
 import 'package:prosiddho/controller/signin_controller.dart';
+import 'package:prosiddho/style/style_export.dart';
 
 class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Util.fullScreen(showTop: true, showBottom: true);
-
     Widget _iconWithName() {
       return Image.asset(
         Assets.mainIcon,
@@ -39,6 +38,7 @@ class SignInScreen extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: ColorPalette.primaryRed,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

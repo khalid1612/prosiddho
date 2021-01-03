@@ -59,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SectionTitle(
                     title: "Divisions",
                     showMoreText: "Show All",
+                    showMore: false,
                   ),
 
                   //all division

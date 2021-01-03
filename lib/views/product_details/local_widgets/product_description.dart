@@ -108,6 +108,77 @@ class ProductDescription extends StatelessWidget {
           ],
         ),
 
+        //minimum order
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: Util.getProportionateScreenWidth(20),
+            vertical: Util.getProportionateScreenWidth(5),
+          ),
+          child: Text(
+            "Minimum Order ${product.priceOffer == 0 ? product.minimumOrder : product.minimumOrderOffer}  ${product.unit}",
+            style: TextStyle(
+              fontSize: 14,
+            ),
+          ),
+        ),
+
+        //discount buy get
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: Util.getProportionateScreenWidth(20),
+            vertical: Util.getProportionateScreenWidth(5),
+          ),
+          child: Row(
+            children: [
+              //offerPercent
+              if (product.offerPercent != null && product.offerPercent != 0)
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 2,
+                    horizontal: 10,
+                  ),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 5,
+                  ).copyWith(right: 10),
+                  decoration: BoxDecoration(
+                    color: ColorPalette.primary,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    "Discount: ${product.offerPercent}%",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+
+              //buy get
+              if (product.buyGet.quantity != null)
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                    vertical: 2.0,
+                  ),
+                  margin: EdgeInsets.symmetric(
+                    vertical: 5,
+                  ).copyWith(right: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.green.withOpacity(.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    "Buy: ${product.buyGet.quantity}  Get: ${product.buyGet.extra}",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+
         //short description
         Padding(
           padding: EdgeInsets.symmetric(

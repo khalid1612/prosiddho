@@ -74,24 +74,48 @@ class HomeSpecialForYou extends StatelessWidget {
                   horizontal: Util.getProportionateScreenHeight(15),
                   vertical: Util.getProportionateScreenHeight(10),
                 ),
-                child: Text.rich(
-                  TextSpan(
-                    style: TextStyle(color: Colors.white),
-                    children: [
-                      //name
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text.rich(
                       TextSpan(
-                        text: "${product.name.capitalize}\n",
-                        style: TextStyle(
-                          fontSize: Util.getProportionateScreenHeight(18),
-                          fontWeight: FontWeight.bold,
+                        style: TextStyle(color: Colors.white),
+                        children: [
+                          //name
+                          TextSpan(
+                            text: "${product.name.capitalize}\n",
+                            style: TextStyle(
+                              fontSize: Util.getProportionateScreenHeight(18),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          //division
+                          TextSpan(
+                            text: "${product.birthPlace.division}\n",
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (product.offerPercent != null &&
+                        product.offerPercent != 0)
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 2,
+                          horizontal: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          "Discount: ${product.offerPercent}%",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                      //division
-                      TextSpan(
-                        text: "${product.birthPlace.division}\n",
-                      ),
-                    ],
-                  ),
+                  ],
                 ),
               ),
             ],

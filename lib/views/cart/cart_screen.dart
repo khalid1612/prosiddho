@@ -126,7 +126,7 @@ class CartScreen extends StatelessWidget {
                                   ),
                                   child: Center(
                                     child: Text.rich(
-                                      TextSpan(text: "FREE  ", children: [
+                                      TextSpan(text: "FREE  \n", children: [
                                         TextSpan(
                                           text: "${item.extra}",
                                           style: TextStyle(
